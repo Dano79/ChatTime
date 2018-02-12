@@ -1,5 +1,6 @@
 package drizzidevs.smack
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
@@ -17,22 +18,23 @@ class MainActivity : AppCompatActivity() {
 
 
         val toggle = ActionBarDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawer_layout.addDrawerListener(toggle)
+                this, d_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        d_layout.addDrawerListener(toggle)
         toggle.syncState()
 
     }
 
     override fun onBackPressed() {
-        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-            drawer_layout.closeDrawer(GravityCompat.START)
+        if (d_layout.isDrawerOpen(GravityCompat.START)) {
+            d_layout.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
         }
     }
 
-    fun loginButtonNavClicked(view: View) {
-
+    fun loginBtnNavClicked(view: View) {
+        val loginIntent = Intent(this, LoginActivity::class.java)
+        startActivity(loginIntent)
     }
 
     fun addChannelClicked(view: View) {
