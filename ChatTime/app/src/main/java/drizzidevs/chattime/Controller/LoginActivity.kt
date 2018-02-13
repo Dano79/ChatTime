@@ -24,7 +24,7 @@ class LoginActivity : AppCompatActivity() {
         val email = loginEmailText.text.toString()
         val password = loginPasswordText.text.toString()
         hideKeyboard()
-        if (email.isNotEmpty() &&  password.isNotEmpty()) {
+        if (email.isNotEmpty() && password.isNotEmpty()) {
             AuthService.loginUser(this, email, password) { loginSuccess ->
                 if (loginSuccess) {
                     AuthService.findUserByEmail(this) { findSuccess ->
@@ -34,25 +34,20 @@ class LoginActivity : AppCompatActivity() {
                         } else {
                             errorToast()
                         }
-
                     }
                 } else {
                     errorToast()
                 }
-
             }
         } else {
             Toast.makeText(this, "Please fill in both email and password", Toast.LENGTH_LONG).show()
         }
-
-
     }
 
     fun loginCreateUserBtnClicked (view: View) {
         val createUserIntent = Intent(this, CreateUserActivity::class.java)
         startActivity(createUserIntent)
         finish()
-
     }
 
     fun errorToast() {
@@ -67,9 +62,9 @@ class LoginActivity : AppCompatActivity() {
         } else {
             loginSpinner.visibility = View.INVISIBLE
         }
+
         loginLoginBtn.isEnabled = !enable
         loginCreateUserBtn.isEnabled = !enable
-
     }
 
     fun hideKeyboard() {
@@ -79,6 +74,4 @@ class LoginActivity : AppCompatActivity() {
             inputManager.hideSoftInputFromWindow(currentFocus.windowToken, 0)
         }
     }
-
-
 }
